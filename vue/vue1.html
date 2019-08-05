@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://unpkg.com/vue"></script>
+<title></title>
+</head>
+<body>
+	<div id="app1">
+	<template v-if="type ==='name'">
+    	<label>用户名：</label>
+        <input  placeholder="输入用户名" key="name-input"/>
+    </template>
+    <template v-else>
+    	<label>邮箱：</label>
+        <input  placeholder="输入邮箱" key="mail-input"/>
+    </template>
+    <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+    <div id="app2">
+    	<ul>
+        	<template v-for="book in books">
+            	<li>书名：{{book.name}}</li>
+                <li>作者：{{book.author}}</li>
+            </template>
+        </ul>
+    </div>
+    <script>
+		var app=new Vue({
+			el:'#app1',
+			data:{
+				type:'name'
+				},
+			methods:{
+				handleToggleClick:function(){
+					this.type = this.type ==='name' ? 'mail' : 'name';
+					}
+				}
+			})
+			
+		var app2 = new Vue({
+			el: '#app2',
+			data:{
+				books: [
+					{
+						name: '《vue.js实战》',
+						author: 'han'
+						},
+					{
+						name: '《Javascript语言》',
+						author: 'jin'
+						},
+					{
+						name: '《Javascript程序设计》',
+						author: 'tao'
+						}	
+					]
+				}
+			})
+			app2.books.push({
+				name:'《CSS揭秘》',
+				author:'haha'
+				});
+	</script>
+</body>
+</html>
